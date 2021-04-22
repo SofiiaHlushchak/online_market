@@ -1,0 +1,17 @@
+<h2 style="color: red; margin: 0 auto">Show Product</h2>
+
+<h4> <%= @product.name.upcase %></h4>
+
+<ul>
+  <li> Price: <%= @product.price %> $ </li>
+  <li> Weight: <%= @product.weight %> </li>
+  <li> Description: <%= urls_to_content (@product.description) %> </li>
+</ul>
+
+<%= button_to " edit #{@product.name}", edit_product_path, method: :get %>
+<br>
+<%= button_to "detele #{@product.name}", product_path(@product), method: :delete %>
+<br>
+<%= button_to "index", products_path,  method: :get %>
+
+<%= render 'shared/email' %>

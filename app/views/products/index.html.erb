@@ -1,0 +1,34 @@
+
+<% unless @products.empty? %>
+  <h2 style="color: red; margin: 0 auto">All Product</h2>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Description</th>
+      <th>Rating</th>
+      <th>Delete</th>
+    </tr>
+  <% @products.sort.each do |product| %>
+    <tr>
+      <td><%= product.id %></td>
+      <td><%= link_to product.name, product_path(product)%></td>
+      <td><%= product.price %></td>
+      <td><%= "img" if product.description %></td>
+      <td><%= product.votes_count %>,<%= link_to '+' , upvote_product_path(product)%></td>
+      <td><%= button_to 'detele', product_path(product), method: :delete  %></td>
+    </tr>
+  <% end %>
+  </table>  
+  <%= button_to "new product", new_product_path, method: :get %>
+  <br>
+  <%= button_to "only expensive", expensive_products_path, method: :get %>
+  <br>  
+  <%= button_to "admin panel  ", admin_users_count_path, method: :get %>
+  <% else %>
+  <h2 style="color: red; margin: 0 auto">No Product</h2>
+  <%= button_to "new product", new_product_path, method: :get %>
+<% end %>
+
+<%= render 'shared/email' %>

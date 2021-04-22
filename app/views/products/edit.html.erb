@@ -1,0 +1,15 @@
+<h2 style="color: red; margin: 0 auto">Edit <% @product.name %></h2>
+
+<%= form_tag  (@product), method: :put do %>
+  <%= label_tag :name %>
+  <%= text_field_tag :name, @product.name %>
+  <%= label_tag :price %>
+  <%= text_field_tag :price, @product.price %>
+  <%= label_tag :description %>
+  <%= text_field_tag :description, @product.description %>
+  <%= label_tag :weight %>
+  <%= text_field_tag :weight, @product.weight %>
+  <%= submit_tag "Update", class: "bth bth-large bth-primary" %>
+<% end %>
+
+<%= render 'shared/email' %>
