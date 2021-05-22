@@ -1,12 +1,4 @@
 <h2 style="color: red; margin: 0 auto">Create New Product</h2>
-
-<!--<form action="/products" method="post">
-  <lable>
-    <input type="text" name="title"/>
-  </lable>  
-  <input type="submit" />
-</form> --!>    
-  
 <%= form_tag products_path  , method: :post do %>
   <%= label_tag :name %>
   <%= text_field_tag :name %>
