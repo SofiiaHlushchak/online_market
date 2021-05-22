@@ -13,9 +13,11 @@ class ProductsController < ApplicationController
     product = Product.create(products_params)
 
     if product.persisted?
+      flash[:success] = "Product was created"
       redirect_to products_path
     else
-      render json: product.errors, status: :unprocessable_entity
+      flash.now[:error] = "Please fill all fields correctly"
+      render :new
     end
   end
 
@@ -32,16 +34,20 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(products_params)
+      flash[:success] = "Product was updated"
       redirect_to product_path
     else 
-      render json: product.errors, status: :unprocessable_entity
+      flash.now[:error] = "Please fill all fields correctly"
+      render :edit
     end
   end
 
   def destroy
     if @product.destroy.destroyed?
+      flash[:success] = "Product was deleted"
       redirect_to products_path
     else
+      flash.now[:error] = "Product wasn't deleted"
       render json: product.errors, status: :unprocessable_entity
     end
   end
